@@ -82,7 +82,8 @@ Demo/DemoApp.swift                    # @main App; owns the app-specific scenari
 ## Verification
 
 - **Ran on a Simulator:** yes, once, as described under Screenshots. Xcode 26.3 resolved `operation-ownership-kit` 1.0.0 from GitHub, built the app, installed it on the iPhone 17 Pro Simulator (iOS 26.3) and launched it. The scenario picker and the strategy control were exercised, and the app did not crash.
-- **CI:** the macOS 15 job resolves the remote package and builds `Demo` for the generic iOS Simulator destination. This line is updated once that run reports.
+- **CI** ([Actions tab](https://github.com/rajatslakhina/operation-ownership-demo-app/actions)): green. The macOS 15 job selects Xcode 16.4 and runs `xcodebuild -resolvePackageDependencies`, which resolves `operation-ownership-kit` from GitHub within the `upToNextMajorVersion` range from 1.0.0. It then runs `xcodebuild build -scheme Demo -destination 'generic/platform=iOS Simulator'`. That is a compile check; CI does not launch the app. The launch is the Simulator run above.
+- **The library itself:** 62 XCTest tests, plus Linux and macOS CI. See the [library README](https://github.com/rajatslakhina/operation-ownership-kit#verification).
 
 Library: https://github.com/rajatslakhina/operation-ownership-kit
 
